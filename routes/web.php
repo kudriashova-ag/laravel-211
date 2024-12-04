@@ -20,3 +20,7 @@ Route::get('contacts', [MainController::class, 'contacts'])->name('contacts');
 Route::post('send-email', [MainController::class, 'sendEmail'])->name('sendEmail');
 
 Route::resource('admin/categories', CategoryController::class);
+
+
+
+// Route::get('cat/{category}', [CategoryController::class, 'getCategory']);

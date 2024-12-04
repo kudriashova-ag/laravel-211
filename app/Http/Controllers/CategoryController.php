@@ -29,7 +29,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        /*
+        $category = new Category();
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->save(); // зберігаємо категорію в базі даних
+        */
+
+        $category = Category::create($request->all()); // зберігаємо категорію в базі даних
+        
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -45,7 +58,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -53,7 +66,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        // $category->name = $request->name;
+        // $category->description = $request->description;
+        // $category->save();
+
+        $category->update($request->all());
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -61,6 +83,17 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index');
     }
+
+
+
+    // function getCategory(Category $category){
+    //     dd($category);
+
+    //     //$category = Category::findOrFail($id);
+    //     // dd($category);
+       
+    // }
 }
