@@ -20,9 +20,11 @@
             @foreach ($categories as $category)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$category->image}}</td>
-                <td>{{$category->name}}</td>
+                <td><img src="{{asset($category->image)}}" alt="{{$category->name}}" style="width: 70px"></td>
+                <td>{{$category->name}}
+                </td>
                 <td>{{$category->short_description}}</td>
+
                 <td>
                     <a href="{{route('categories.edit', $category->id)}}" class="btn btn-warning">Edit</a>
 

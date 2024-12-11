@@ -30,7 +30,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255'
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         /*
@@ -41,6 +42,12 @@ class CategoryController extends Controller
         */
 
         $category = Category::create($request->all()); // зберігаємо категорію в базі даних
+
+        if($request->image){
+            $file = $request->file('image')->store('categories');
+            $category->image = $file;
+            $category->save();
+        }
         
         return redirect()->route('categories.index');
     }

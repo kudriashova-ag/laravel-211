@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,7 @@ Route::get('contacts', [MainController::class, 'contacts'])->name('contacts');
 Route::post('send-email', [MainController::class, 'sendEmail'])->name('sendEmail');
 
 Route::resource('admin/categories', CategoryController::class);
+Route::resource('admin/products', ProductController::class);
 
 
 

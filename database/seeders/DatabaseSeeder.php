@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Category::factory()->create([
+        /*Category::factory()->create([
             'name' => 'Category 1',
             'description' => 'Description 1'
         ]);
@@ -29,7 +29,9 @@ class DatabaseSeeder extends Seeder
         Category::factory()->create([
             'name' => 'Category 2',
             'description' => 'Description 2'
-        ]);
+        ]);*/
+
+        Category::factory()->count(5)->hasProducts(10)->create();
 
 
     }
