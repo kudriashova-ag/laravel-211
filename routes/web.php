@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +18,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('contacts', [MainController::class, 'contacts'])->name('contacts');
+Route::post('send-email', [MainController::class, 'sendEmail'])->name('sendEmail');
+
+
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::resource('categories', CategoryController::class);
+    Route::resource('products', ProductController::class);
+
 });
 
 Route::get('/dashboard', function () {
