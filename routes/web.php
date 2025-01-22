@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
-
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
@@ -36,6 +36,9 @@ Route::post('send-email', [MainController::class, 'sendEmail'])->name('sendEmail
 Route::get('category/{category:slug}', [ShopController::class, 'category'])->name('shop.category');
 Route::get('product/{product:slug}', [ShopController::class, 'product'])->name('shop.product');
 
+Route::get('cart/add-product/{product}', [CartController::class, 'addProduct'])->name('cart.addProduct');
+Route::delete('cart/remove-product/{product}', [CartController::class, 'removeProduct'])->name('cart.removeProduct');
+Route::delete('cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
 
 Route::middleware('auth')->group(function () {

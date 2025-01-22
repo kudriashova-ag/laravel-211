@@ -9,7 +9,7 @@
 
 </head>
 
-<body class="bg-dark text-light">
+<body class="">
     <nav class="bg-white border-b border-gray-200">
         <div class="flex justify-between items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
@@ -69,7 +69,9 @@
 
             @if (Route::has('login'))
                 <div class="text-right flex items-center">
-                    <button class="bg-gray-800 text-white font-medium py-2 px-4 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 me-5" id="openModal"> Cart </button>
+                    <button
+                        class="bg-gray-800 text-white font-medium py-2 px-4 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 me-5"
+                        id="openModal"> Cart </button>
                     @auth
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
 
@@ -151,12 +153,11 @@
 
     <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
         <!-- Modal Content -->
-        <div class="bg-white rounded-lg shadow-lg max-w-sm w-full p-6">
+        <div class="bg-white rounded-lg shadow-lg max-w-xl w-full p-6">
             <h2 class="text-lg font-bold mb-4 text-gray-800">Cart</h2>
 
             <div class="text-gray-600 mb-6 cart-body">
-
-
+                @include('shop._cart_mini')
             </div>
 
             <div class="flex justify-end space-x-2">
@@ -165,6 +166,9 @@
                 </button>
                 <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                     Confirm
+                </button>
+                <button class="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 clear-cart">
+                    Clear Cart
                 </button>
             </div>
         </div>
