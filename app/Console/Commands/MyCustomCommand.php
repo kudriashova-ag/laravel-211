@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\TestMail;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class MyCustomCommand extends Command
 {
@@ -26,6 +28,8 @@ class MyCustomCommand extends Command
      */
     public function handle()
     {
+        Mail::to('kudriashova.ag@gmail.com')->send(new TestMail());
+
         Log::info('Custom command executed');
     }
 }
